@@ -191,3 +191,6 @@ class BaseO3CPU(BaseCPU):
         TournamentBP(numThreads=Parent.numThreads), "Branch Predictor"
     )
     needsTSO = Param.Bool(False, "Enable TSO Memory model")
+
+    branchTracer = Param.DynBranchTracer(NULL, "Tracer for Dynamic Branch Instructions")
+    

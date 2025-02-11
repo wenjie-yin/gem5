@@ -115,6 +115,8 @@ Source("stage2_lookup.cc", tags="arm isa")
 Source("tlb.cc", tags="arm isa")
 Source("tlbi_op.cc", tags="arm isa")
 Source("utility.cc", tags="arm isa")
+Source('dynbranchtracer.cc', tags='arm isa')
+
 
 SimObject("ArmDecoder.py", sim_objects=["ArmDecoder"], tags="arm isa")
 SimObject(
@@ -155,6 +157,8 @@ SimObject(
 SimObject("ArmPMU.py", sim_objects=["ArmPMU"], tags="arm isa")
 
 SimObject("ArmCPU.py", sim_objects=[], tags="arm isa")
+
+SimObject('ArmDynBranchTracer.py', sim_objects=['ArmDynBranchTracer'], tags='arm isa')
 
 DebugFlag("Arm", tags="arm isa")
 DebugFlag("ArmTme", "Transactional Memory Extension", tags="arm isa")

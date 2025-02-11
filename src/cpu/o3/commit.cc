@@ -1222,6 +1222,11 @@ Commit::commitHead(const DynInstPtr &head_inst, unsigned inst_num)
 
         commitStatus[tid] = TrapPending;
 
+        // Trace Dynamic Branch Instruction
+        if (cpu->m_branch_tracer != nullptr) {
+            cpu->m_branch_tracer->traceDynBranch(head_inst);
+
+
         DPRINTF(Commit,
             "[tid:%i] [sn:%llu] Committing instruction with fault\n",
             tid, head_inst->seqNum);
@@ -1246,6 +1251,12 @@ Commit::commitHead(const DynInstPtr &head_inst, unsigned inst_num)
     }
 
     updateComInstStats(head_inst);
+
+    // Trace Dynamic Branch Instruction
+    if (cpu->m_branch_tracer != nullptr) {
+        cpu->m_branch_tracer->traceDynBranch(head_inst);
+    }
+
 
     DPRINTF(Commit,
             "[tid:%i] [sn:%llu] Committing instruction with PC %s\n",
