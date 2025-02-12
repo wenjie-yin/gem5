@@ -55,6 +55,7 @@
 #include "cpu/o3/commit.hh"
 #include "cpu/o3/decode.hh"
 #include "cpu/o3/dyn_inst_ptr.hh"
+#include "cpu/o3/dynbranchtracer.hh"
 #include "cpu/o3/fetch.hh"
 #include "cpu/o3/free_list.hh"
 #include "cpu/o3/iew.hh"
@@ -585,11 +586,15 @@ class CPU : public BaseCPU
          * quiesce operation or waiting for an interrupt. */
         statistics::Scalar quiesceCycles;
     } cpuStats;
+    
+    DynBranchTracer* m_branch_tracer;
 
   public:
     // hardware transactional memory
     void htmSendAbortSignal(ThreadID tid, uint64_t htm_uid,
                             HtmFailureFaultCause cause) override;
+
+  
 };
 
 } // namespace o3
